@@ -1,6 +1,12 @@
 import React from 'react';
 
 class Clock extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.formatTime = this.formatTime.bind(this)
+    }
+
     formatTime(timeInSeconds) {
         var seconds = timeInSeconds % 60;
         var minutes = Math.floor(timeInSeconds / 60);

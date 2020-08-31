@@ -10,7 +10,7 @@ class Countdown extends React.Component {
             isStarted: false,
             count: 0,
         };
-        this.setCountdownTime = this.setCountdownTime.bind(this)
+        this.handleSetCountdownTime = this.handleSetCountdownTime.bind(this)
     }
     
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -20,18 +20,20 @@ class Countdown extends React.Component {
                     clearInterval(intervalId)
                 }
                 else {
-                    this.setCountdownTime(this.state.count-1)
+                    this.handleSetCountdownTime(this.state.count-1)
                 }
             }, 1000)
         }
     }
 
-    setCountdownTime(currTime) {
-        if (!this.state.isStarted) {
-            this.setState({isStarted: true, count: currTime})
-        }
-        else {
-            this.setState({count: currTime})
+    handleSetCountdownTime(currTime) {
+        if (currTime >= 0) {
+            if (!this.state.isStarted) {
+                this.setState({isStarted: true, count: currTime})
+            }
+            else {
+                this.setState({count: currTime})
+            }
         }
     }
 
@@ -40,7 +42,7 @@ class Countdown extends React.Component {
         return (
             <div>
                 <Clock timeInSeconds={this.state.count}/>
-                <CountdownForm onSetCountdownTime={this.setCountdownTime}/>
+                <CountdownForm onSetCountdownTime={this.handleSetCountdownTime}/>
             </div>
         );
     }
