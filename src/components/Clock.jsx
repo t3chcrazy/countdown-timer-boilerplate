@@ -22,7 +22,7 @@ class Clock extends React.Component {
         return (
             <div className="clock">
                 <span className="clock-text">
-                  
+                  {this.formatTime(timeInSeconds)}
                 </span>
             </div>
         );
